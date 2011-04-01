@@ -1,0 +1,70 @@
+# ------------------------------------------------------------------------------
+# tag
+snippet re
+	<%= ${1} %>
+snippet <%
+	<% ${1} %>
+snippet <
+	<${1:div}${2}>
+		
+	</$1>
+snippet <>
+	<${1:div}${2}></$1>
+snippet r
+	<br />
+snippet input
+	<input type="${1:text}" name="${2}" value="${3}" />
+snippet cdata
+	<![CDATA[
+		${1}
+	]]>
+snippet tr
+	<tr>${1}</tr>
+snippet td
+	<td>${1}</td>
+snippet th
+	<th>${1}</th>
+snippet each
+	<% ${1}.each do |${2}| %>
+		${3}
+	<% end %>
+snippet script
+	<script type="text/javascript">
+	$(function(){
+		${1}
+	})
+	</script>
+snippet style
+	<style type="text/css" media="screen">
+	${1}
+	</style>
+# ------------------------------------------------------------------------------
+# attr
+snippet id
+	id="${1:header}"
+snippet class
+	class="${1}"
+snippet src
+	src="${1}"
+snippet xmlns
+	xmlns="http://www.w3.org/1999/xhtml"
+snippet http-equiv
+	http-equiv="content-type" content="text/html; charset=utf-8"
+snippet rel
+	rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}"
+snippet href
+	href="${1}"
+snippet action
+	action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8"
+snippet with
+	with="${1:default}" at="${2:content}"
+# ------------------------------------------------------------------------------
+# Doctypes
+snippet doc4
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
+	"http://www.w3.org/TR/html4/loose.dtd">
+snippet doc
+	<!DOCTYPE HTML>
+snippet docx
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

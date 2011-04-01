@@ -1,0 +1,75 @@
+# tags
+snippet input
+	input type="${1:text}" name="${2}" value="${3}"
+snippet table
+	table
+	  tr
+	    th
+	  tr
+	    td
+snippet script
+	script type="text/javascript"
+	  |	$(function(){
+	      ${1}
+	    })
+snippet style
+	style type="text/css" media="screen"
+	  | ${1}
+snippet h1
+	h1
+	  | ${1}
+snippet h2
+	h2
+	  | ${1}
+snippet h3
+	h3
+	  | ${1}
+snippet h4
+	h4
+	  | ${1}
+snippet h5
+	h5
+	  | ${1}
+snippet h6
+	h6
+	  | ${1}
+snippet p
+	p
+	  | ${1}
+snippet div
+	div
+	  | ${1:use #xxx or .xxx if possible}
+snippet span
+	span
+	  | ${1}
+snippet a
+	a href="${1:url}" ${2:show_text}
+snippet form
+	form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8"
+snippet css
+	link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}"
+snippet js
+	script type="text/javascript" src="${1:src}"
+# attr
+snippet content-type
+	http-equiv="content-type" content="text/html; charset=utf-8"
+# ruby
+snippet if
+	- if ${1}
+	  ${2}
+snippet ife
+	- if ${1}
+	  ${2}
+	- else
+	  ${4}
+snippet each
+	- ${1}.each do |${2}|
+	  ${3}
+# misc
+snippet cdata
+	<![CDATA[
+	  ${1}
+	]]>
+snippet raw
+	== ${1:unescaped content}
+

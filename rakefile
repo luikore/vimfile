@@ -1,0 +1,97 @@
+require 'fileutils'
+require 'open-uri'
+include FileUtils
+
+desc "init"
+task :default do
+  unless File.exist?('bundle')
+    mkdir_p 'bundle'
+    `rake down:all`
+  end
+  `rake vimrc`
+end
+
+desc "create vimrc link"
+task :vimrc do
+  if RUBY_PLATFORM =~ /mswin|mingw/
+    unless File.exist?('../_vimrc')
+      cp '.vimrc', '../_vimrc'
+    end
+  else
+    unless File.exist?('../.vimrc')
+      system 'ln .vimrc ../.vimrc'
+    end
+  end
+end
+
+desc "download bundles"
+task 'down:all' => %w[down:pagogen down:git down:vim down:darcs]
+
+desc "download bundle management tool:pagogen"
+task 'down:pagogen' do
+  mkdir_p 'autoload'
+  cd 'autoload'
+  puts `wget https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim --no-check-certificate`
+end
+
+desc "download git bundles"
+task "down:git" do
+  cd 'bundle'
+  %w[
+    git://github.com/Lokaltog/vim-easymotion
+    git://github.com/vim-ruby/vim-ruby.git
+    git://github.com/astashov/vim-ruby-debugger.git
+    git://github.com/msanders/snipmate.vim.git
+    git://github.com/scrooloose/nerdtree.git
+    git://github.com/bbommarito/vim-slim.git
+    git://github.com/tpope/vim-git.git
+  ].each do |url|
+    dir = url.split('/').last.sub(/\.git$/, '')
+    puts "  Unpacking #{url} into #{dir}"
+    `git clone #{url} #{dir}`
+  end
+  # clear snippets
+  FileUtils.rm_rf "snipmate.vim/snippets"
+end
+
+desc "download darcs bundles"
+task "down:darc" do
+  cd 'bundle'
+  %w[
+    http://code.haskell.org/haskellmode-vim/
+  ].each do |url|
+    system "darcs get #{url}"
+  end
+end
+
+desc "download vim.org bundles"
+task "down:vim" do
+  cd 'bundle'
+  mkdir_p "vim.org"
+  cd 'vim.org'
+  [
+    %w[plugin/IndexedSearch.vim        7062],
+    %w[plugin/gist.vim                12732],
+    %w[syntax/jquery.vim              12107],
+    %w[plugin/fencview.vim             9649]
+  ].each do |local_file, script_id|
+    puts "  Downloading #{local_file}"
+    url = "http://www.vim.org/scripts/download_script.php?src_id=#{script_id}"
+    mkdir_p File.dirname local_file
+    `curl #{url} > #{local_file}`
+  end
+
+  begin
+    puts "  Downloading EnhancedCommentify"
+    url = "http://www.vim.org/scripts/download_script.php?src_id=8319"
+    `curl #{url} > x.tgz`
+    `tar -zxvf x.tgz`
+    FileUtils.rm_rf 'x.tgz'
+  end
+end
+
+desc "must clear bundle dir before download"
+task "clear" do 
+  rm_rf "bundle"
+end
+
