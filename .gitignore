@@ -1,0 +1,5 @@
+autoload
+bundle
+.DS_Store
+.VimballRecord
+.netrwhist
