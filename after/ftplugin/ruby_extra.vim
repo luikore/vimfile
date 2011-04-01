@@ -3,8 +3,8 @@ if has("win32") || has("win64")
   map! <buffer> <F5> <ESC>:update<CR>:!ruby<Space>-Eutf-8<Space>"%"<Space>2>&1<Bar>iconv<Space>-f<Space>utf-8//ignore<Space>-t<Space>gbk//ignore<CR>
   nmap <buffer> <F5> :update<CR>:!ruby<Space>-Eutf-8<Space>"%"<Space>2>&1<Bar>iconv<Space>-f<Space>utf-8//ignore<Space>-t<Space>gbk//ignore<CR>
 else
-  map! <buffer> <F5> <ESC>:update<CR>:!ruby<Space>"%"
-  nmap <buffer> <F5> :update<CR>:!ruby<Space>"%"
+  map! <buffer> <F5> <ESC>:update<CR>:!ruby<Space>"%"<CR>
+  nmap <buffer> <F5> :update<CR>:!ruby<Space>"%"<CR>
 endif
 
 set expandtab
