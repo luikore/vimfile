@@ -2,6 +2,13 @@ require 'fileutils'
 require 'open-uri'
 include FileUtils
 
+desc "show notes"
+task :notes do
+  puts "tabs:"
+  puts "  set preference: in the current window - and set the arglist"
+  puts "  change mvim 'opts=' to opts=' --remote-tab-silent '"
+end
+
 desc "init"
 task :default do
   unless File.exist?('bundle')
@@ -25,7 +32,7 @@ task :vimrc do
 end
 
 desc "download bundles"
-task 'down:all' => %w[down:pagogen down:git down:vim down:darcs]
+task 'down:all' => %w[down:pagogen down:git down:hg down:vim down:darcs]
 
 desc "download bundle management tool:pagogen"
 task 'down:pagogen' do
@@ -36,7 +43,7 @@ end
 
 desc "download git bundles"
 task "down:git" do
-  cd 'bundle'
+  cd File.dirname(__FILE__) + '/bundle'
   %w[
     git://github.com/Lokaltog/vim-easymotion
     git://github.com/vim-ruby/vim-ruby.git
@@ -45,6 +52,7 @@ task "down:git" do
     git://github.com/scrooloose/nerdtree.git
     git://github.com/bbommarito/vim-slim.git
     git://github.com/tpope/vim-git.git
+    git://github.com/scrooloose/nerdcommenter.git
   ].each do |url|
     dir = url.split('/').last.sub(/\.git$/, '')
     puts "  Unpacking #{url} into #{dir}"
@@ -56,7 +64,7 @@ end
 
 desc "download darcs bundles"
 task "down:darc" do
-  cd 'bundle'
+  cd File.dirname(__FILE__) + '/bundle'
   %w[
     http://code.haskell.org/haskellmode-vim/
   ].each do |url|
@@ -64,9 +72,20 @@ task "down:darc" do
   end
 end
 
+desc "download mercurial bundles"
+task 'down:hg' do
+  cd File.dirname(__FILE__) + '/bundle'
+  %w[
+    https://bitbucket.org/ns9tks/vim-l9/
+    https://bitbucket.org/ns9tks/vim-fuzzyfinder/
+  ].each do |url|
+    `hg clone #{url}`
+  end
+end
+
 desc "download vim.org bundles"
 task "down:vim" do
-  cd 'bundle'
+  cd File.dirname(__FILE__) + '/bundle'
   mkdir_p "vim.org"
   cd 'vim.org'
   [

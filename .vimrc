@@ -55,6 +55,13 @@ nmap <F2> :Explore<CR>
 map! <C-F2> <ESC>:BufExplorer<CR>
 nmap <C-F2> :BufExplorer<CR>
 
+" Switch tabs
+map! <D-A-Left> <ESC>gT
+nmap <D-A-Left> gT
+map! <D-A-Right> <ESC>gt
+nmap <D-A-Right> gt
+
+
 " Go to next matched tag
 noremap <C-F3> :tnext<CR>
 inoremap <C-F3> <ESC>:tnext<CR>
@@ -79,15 +86,10 @@ map! <S-F4> <ESC>:cprevious<CR>
 nmap <S-F4> :cprevious<CR>
 " F5, C-F5, F6, F7 see ftplugin
 
-" toggle comment (<A-c> comment, <A-v> decomment)
-let g:EnhCommentifyUseAltKeys = 'yes'
-let g:EnhCommentifyTraditionalMode = 'N'
-
 " sudo
 command W w !sudo tee % >/dev/null
 
-let mapleader = ","
-
+let mapleader=" "
 
 " Ruby
 " ----------------------------------------------------------------
@@ -105,6 +107,12 @@ if has("win32") || has("win64")
   let g:haddock_docdir=$GHC_HOME . "/doc/html/"
   let g:ghc=$GHC_HOME . "/bin/ghc"
 endif
+
+
+" FuzzyFinder
+" ----------------------------------------------------------------
+
+nmap <D-CR> :FufCoverageFile<CR>
 
 
 " Tab 
@@ -208,6 +216,16 @@ cnoremap <C-A> <C-C>gggH<C-O>G
 onoremap <C-A> <C-C>gggH<C-O>G
 snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
+
+" for Mac: Cmd-Shift-Right is Select till line end
+inoremap <D-S-Right> <Esc>vg$
+vnoremap <D-S-Right> g$ 
+noremap <D-S-Right> vg$
+snoremap <D-S-Right> <C-O>$
+inoremap <D-S-Left> <Esc>vg^
+vnoremap <D-S-Left> g^
+noremap <D-S-Left> vg^
+snoremap <D-S-Left> <C-O>^
 
 " CTRL-F4 is Close window
 noremap <C-F4> <C-W>c
