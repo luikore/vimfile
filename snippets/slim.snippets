@@ -9,7 +9,7 @@ snippet table
 	    td
 snippet script
 	script type="text/javascript"
-	  |	$(function(){
+	  | $(function(){
 	      ${1}
 	    })
 snippet style
@@ -23,8 +23,7 @@ snippet css
 	link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}"
 snippet js
 	script type="text/javascript" src="${1:src}"
-# attr
-snippet content-type
+snippet meta content-type
 	http-equiv="content-type" content="text/html; charset=utf-8"
 # ruby
 snippet if
@@ -38,6 +37,12 @@ snippet ife
 snippet each
 	- ${1}.each do |${2}|
 	  ${3}
+snippet do
+	do |${1}|
+	${2}
+snippet ff
+	== form_for ${1:@`Filename('$1')`}, "${2:/}", method: :${3:post} do |f|
+	   == f.submit ${4}
 # misc
 snippet cdata
 	| <![CDATA[
@@ -47,13 +52,13 @@ snippet raw
 	== ${1:unescaped content}
 snippet ifie if IE
 	| <!--[if IE]>
-	  <link rel="stylesheet" href="/stylesheets/bp/ie.css" type="text/css" media="screen, projection" />
-	  <![endif]-->
+	${1:link rel="stylesheet" href="/stylesheets/bp/ie.css" type="text/css" media="screen, projection"}
+	| <![endif]-->
 snippet ifie if le IE 9
 	| <!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	  <![endif]-->
+	${1:script src="http://html5shim.googlecode.com/svn/trunk/html5.js"}
+	| <![endif]-->
 snippet ! xml
 	| <?xml version="1.0" encoding="utf-8" ?>
-snippet ! html
-	| ! doctype html
+snippet ! html, xhtml
+	| ! doctype ${1:html}
