@@ -15,33 +15,6 @@ snippet script
 snippet style
 	style type="text/css" media="screen"
 	  | ${1}
-snippet h1
-	h1
-	  | ${1}
-snippet h2
-	h2
-	  | ${1}
-snippet h3
-	h3
-	  | ${1}
-snippet h4
-	h4
-	  | ${1}
-snippet h5
-	h5
-	  | ${1}
-snippet h6
-	h6
-	  | ${1}
-snippet p
-	p
-	  | ${1}
-snippet div
-	div
-	  | ${1:use #xxx or .xxx if possible}
-snippet span
-	span
-	  | ${1}
 snippet a
 	a href="${1:url}" ${2:show_text}
 snippet form
@@ -72,4 +45,15 @@ snippet cdata
 	]]>
 snippet raw
 	== ${1:unescaped content}
-
+snippet ifie if IE
+	| <!--[if IE]>
+	  <link rel="stylesheet" href="/stylesheets/bp/ie.css" type="text/css" media="screen, projection" />
+	  <![endif]-->
+snippet ifie if le IE 9
+	| <!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	  <![endif]-->
+snippet ! xml
+	| <?xml version="1.0" encoding="utf-8" ?>
+snippet ! html
+	| ! doctype html

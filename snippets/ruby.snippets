@@ -287,8 +287,6 @@ snippet ast
 	assert_throws(:${1:expected}) { ${2} }
 snippet asnt
 	assert_nothing_thrown { ${1} }
-snippet fl
-	flunk("${1:Failure message.}")${2}
 # Benchmark.bmbm do .. end
 snippet bm-
 	TESTS = ${1:10_000}
@@ -297,39 +295,19 @@ snippet bm-
 	end
 snippet rep
 	results.report("${1:name}:") { TESTS.times { ${2} }}
-# Marshal.dump(.., file)
-snippet Md
-	File.open(${1:"path/to/file.dump"}, "wb") { |${2:file}| Marshal.dump(${3:obj}, $2) }${4}
-# Mashal.load(obj)
-snippet Ml
-	File.open(${1:"path/to/file.dump"}, "rb") { |${2:file}| Marshal.load($2) }${3}
-# deep_copy(..)
-snippet deec
-	Marshal.load(Marshal.dump(${1:obj_to_copy}))${2}
-snippet Pn-
-	PStore.new(${1:"file_name.pstore"})${2}
 snippet tra
 	transaction(${1:true}) { ${2} }
-# xmlread(..)
-snippet xml-
-	REXML::Document.new(File.read(${1:"path/to/file"}))${2}
 # xpath(..) { .. }
 snippet xpa
 	elements.each(${1:"//Xpath"}) do |${2:node}|
 		${3}
 	end
-# class_from_name()
-snippet clafn
-	split("::").inject(Object) { |par, const| par.const_get(const) }
-# singleton_class()
-snippet sinc
-	class << self; self end
 snippet nam
 	namespace :${1:`Filename()`} do
 		${2}
 	end
-snippet tas
-	desc "${1:Task description\}"
+snippet task
+	desc "${1:Task description}"
 	task :${2:task_name => [:dependent, :tasks]} do
 		${3}
 	end
