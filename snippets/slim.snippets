@@ -8,13 +8,16 @@ snippet table
 	  tr
 	    td
 snippet script
-	script type="text/javascript"
-	  | $(function(){
-	      ${1}
-	    })
+	javascript:
+	  $(function(){
+	    ${1}
+	  })
+snippet coffee
+	coffee:
+	  $ () -> ${1}
 snippet style
-	style type="text/css" media="screen"
-	  | ${1}
+	css:
+	  ${1}
 snippet a
 	a href="${1:url}" ${2:show_text}
 snippet form
@@ -26,6 +29,9 @@ snippet js
 snippet meta content-type
 	http-equiv="content-type" content="text/html; charset=utf-8"
 # ruby
+snippet -
+	ruby:
+	  ${1}
 snippet if
 	- if ${1}
 	  ${2}
@@ -39,7 +45,7 @@ snippet each
 	  ${3}
 snippet do
 	do |${1}|
-	${2}
+	  ${2}
 snippet ff
 	== form_for ${1:@`Filename('$1')`}, "${2:/}", method: :${3:post} do |f|
 	   == f.submit ${4}

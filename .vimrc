@@ -38,7 +38,7 @@ function GetFencForStatus()
 endfunction
 
 set laststatus=2              " permanently show status bar
-set guifont=Menlo\ Regular:h16	" cool Monaco like textmate
+set guifont=YaHei\ Consolas\ Hybrid:h17 " MacVim only likes this
 set guioptions=egmrhbt    " see :h 'guioptions'			
 set nowrap
 set fileformats=unix,dos
