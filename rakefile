@@ -58,8 +58,9 @@ task "down:git" do
     puts "  Unpacking #{url} into #{dir}"
     `git clone #{url} #{dir}`
   end
-  # clear snippets
+  # clear snippets and the fucking snipmate delete remap
   FileUtils.rm_rf "snipmate.vim/snippets"
+  FileUtils.rm_rf "snipmate.vim/after/plugin"
 end
 
 desc "download darcs bundles"
